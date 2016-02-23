@@ -1,0 +1,19 @@
+start with https://post.craigslist.org/c/nyc
+//selecting fsbo
+document.getElementsByName('id')[5].checked = true;
+document.getElementsByName('go')[0].click();
+//selecting cars+trucks
+document.getElementsByName('id')[14].checked = true;
+document.getElementsByName('go')[0].click();
+//selecting borough if necessary
+document.getElementsByName('n')[0].checked = true;
+document.getElementsByName('go')[0].click();
+//selecting neighborhood if necessary
+document.getElementsByName('n')[24].checked = true;
+document.getElementsByName('go')[0].click();
+//autofill forms
+FromEMail.value = "email";
+ConfirmEMail.value = "email";
+PostingTitle.value = "car title";
+postal_code.value = "zip";
+posting body

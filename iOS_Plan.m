@@ -86,7 +86,8 @@ bool PostListing() // Not sure if variables will be passed in as parameters, or 
 // Given a string command, run the command as javascript on the page (like we did in Chrome's Console)
 void JavaScriptCommand(NSString command)
 	{
-	// Code to run the command
+	// From http://pablin.org/2013/08/31/interfacing-with-a-uiwebview-from-a-uiviewcontroller/
+	
 	}
 //////////////////////////////////////
 
@@ -106,16 +107,24 @@ void JavaScriptCommand(NSString command)
 // Page is correct
 // Check that a page is correct
 // There might be a better way to do this, but for now I think checking HTML works
-bool PageIsCorrect(string exactHTML)
+bool PageIsCorrect(string exactphrase)
 	{
 	bool correctness = true; // By default we'll assume true
-	// exactHTML will be a string unique to the page we're checking to make sure it's correct
+	// exactphrase will be a string unique to the page we're checking to make sure it's correct
 	
-	if (HTML_of_page_we're_currently_on.Contains(exactHTML) == true)
-		{ boolcorrectness = true; }
-	else
-		{ correctness = false; }
-		
+	// Get the HTML of the page.
+	// From: http://stackoverflow.com/questions/992348/reading-html-content-from-a-uiwebview
+	// Gets HTML
+	NSString *html = [yourWebView stringByEvaluatingJavaScriptFromString: @"document.body.innerHTML"];
+	
+	// From http://stackoverflow.com/questions/2753956/how-do-i-check-if-a-string-contains-another-string-in-objective-c
+	// Checks if string has exactphrase
+	if ([html rangeOfString:exactphrase].location == NSNotFound) 
+		{ correctness = false; } // String not found
+	else 
+		{ correctness = true; } // String found
+	
+	
 	return correctness;
 	}
 //////////////////////////////////////
